@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<script type="text/javascript">
+		function validateImage() {
+				var formData = new FormData();
+    			var	file = document.getElementById("img").files[0];
+    			formData.append("Filedata", file);
+    			var t = file.type.split('/').pop().toLowerCase();
+    			if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        				alert('Please select a valid image file');
+        				document.getElementById("img").value = '';
+        				return false;
+    			}
+    			if (file.size > 4096000) {
+        			alert('Max Upload size is 4MB only');
+        			document.getElementById("img").value = '';
+    			}
+    			else
+    			{
+    				document.getElementById("demo").innerHTML="<img src=document.getElementById('img')";
+    			}
+    			return true;
+			}
+	</script>
+</head>
+<body>
+	<center>
+	<form action="reg.php" method="get">
+	<table border="1">
+		<tr>
+			<td>
+				<label>Name</label>
+			</td>
+			<td>
+				<input type="text" name="name">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Username</label>
+			</td>
+			<td>
+				<input type="text" name="username">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Password</label>
+			</td>
+			<td>
+				<input type="password" name="pwd">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Gender</label>
+			</td>
+			<td>
+				<input type="radio" name="gender" value="Male">Male
+				<input type="radio" name="gender" value="Female">Female
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Upload photo</label>
+			</td>
+			<td>
+				<input type = "file" name= "image" id="img" onchange="validateImage()">
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="submit" value="Submit"></td>
+			<td><input type="reset" name="reset"></td>
+		</tr>
+		
+	</table>
+	<p id="demo">
+	</form>
+	</center>
+</body>
+</html>
